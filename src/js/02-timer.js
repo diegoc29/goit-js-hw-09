@@ -40,7 +40,7 @@ function actualizarTemporizador() {
         clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
-        daysElement.textContent = ('0' + timeParts.days).slice(-3);
+        daysElement.textContent = ('0' + timeParts.days).slice(-2);
         hoursElement.textContent = ('0' + timeParts.hours).slice(-2);
         minutesElement.textContent = ('0' + timeParts.minutes).slice(-2);
         secondsElement.textContent = ('0' + timeParts.seconds).slice(-2);
