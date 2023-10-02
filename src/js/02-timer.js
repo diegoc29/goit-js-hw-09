@@ -21,7 +21,7 @@ function convertMs(ms) {
     const days = Math.floor(hours / 24);
     return {
         days: days % 24,
-        hours: hours % 60,
+        hours: hours % 60,npm
         minutes: minutes % 60,
         seconds: seconds % 60
     };
@@ -40,7 +40,7 @@ function actualizarTemporizador() {
         clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
-        daysElement.textContent = ('0' + timeParts.days).slice(-2);
+        daysElement.textContent = ('0' + timeParts.days).slice(-3);
         hoursElement.textContent = ('0' + timeParts.hours).slice(-2);
         minutesElement.textContent = ('0' + timeParts.minutes).slice(-2);
         secondsElement.textContent = ('0' + timeParts.seconds).slice(-2);
