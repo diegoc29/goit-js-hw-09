@@ -21,7 +21,7 @@ function convertMs(ms) {
     const days = Math.floor(hours / 24);
     return {
         days: days % 24,
-        hours: hours % 60,npm
+        hours: hours % 60,
         minutes: minutes % 60,
         seconds: seconds % 60
     };
