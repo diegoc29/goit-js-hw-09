@@ -33,10 +33,10 @@ function actualizarTemporizador() {
     const diferencia = fechaObjetivo - ahora;
 
     if (diferencia <= 0) {
-        document.getElementById('days').innerHTML = '00';
-        document.getElementById('hours').innerHTML = '00';
-        document.getElementById('minutes').innerHTML = '00';
-        document.getElementById('soconds').innerHTML = '00';
+        daysElement.textContent = '00';
+        hoursElement.textContent = '00';
+        minutesElement.textContent = '00';
+        secondsElement.textContent = '00';
         clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
@@ -57,7 +57,7 @@ flatpickr(dateTimePicker, {
         const currentDate = new Date();
 
         if (selectedDate <= currentDate) {
-            Notiflix.Notify.Failure('');
+            Notiflix.Notify.Failure('2023/08/30');
         } else {
             fechaObjetivo = selectedDate;
             clearInterval(countdownInterval);
@@ -72,7 +72,7 @@ document.querySelector('[data-start]').addEventListener("click", function () {
 });
 
 
-Notiflix.Notify.Init({ position: "bottom-right" });
+Notiflix.Notify.init({position: "bottom-right" });
 
 
 actualizarTemporizador();
