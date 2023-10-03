@@ -33,12 +33,11 @@ function actualizarTemporizador() {
     const diferencia = fechaObjetivo - ahora;
 
     if (diferencia <= 0) {
-        clearInterval(countdownInterval);
         daysElement.textContent = '00';
         hoursElement.textContent = '00';
         minutesElement.textContent = '00';
         secondsElement.textContent = '00';
-        
+        clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
         daysElement.textContent = ('0' + timeParts.days).slice(-2);
@@ -58,7 +57,7 @@ flatpickr(dateTimePicker, {
         const currentDate = new Date();
 
         if (selectedDate <= currentDate) {
-            Notiflix.Notify.failure('');
+            Notiflix.Notify.failure('28-08-09');
         } else {
             fechaObjetivo = selectedDate;
             clearInterval(countdownInterval);
