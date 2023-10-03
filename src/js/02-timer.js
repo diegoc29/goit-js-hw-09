@@ -23,7 +23,7 @@ function convertMs(ms) {
         days: days % 24,
         hours: hours % 60,
         minutes: minutes % 60,
-        seconds: seconds % 60
+        seconds: seconds % 60,
     };
 }
 
