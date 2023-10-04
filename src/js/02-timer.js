@@ -4,6 +4,7 @@ import Notiflix from "notiflix";
 
 
 const fechaObjetivo = new Date('2023-08-30T12:00:00');
+const startBtn = document.querySelector("[data-start]");
 
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
