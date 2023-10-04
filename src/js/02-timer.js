@@ -3,7 +3,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from "notiflix";
 
 
-const fechaObjetivo = new Date('2023, 8, 30, 12, 0, 0');
+const fechaObjetivo = new Date('2023-08-30T12:00:00');
 
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
@@ -40,10 +40,10 @@ function actualizarTemporizador() {
         clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
-        daysElement.textContent = ('0' + timeParts.days).slice(-2);
-        hoursElement.textContent = ('0' + timeParts.hours).slice(-2);
-        minutesElement.textContent = ('0' + timeParts.minutes).slice(-2);
-        secondsElement.textContent = ('0' + timeParts.seconds).slice(-2);
+        if (daysElement) daysElement.textContent = ('0' + timeParts.days).slice(-2);
+        if (hoursElement) hoursElement.textContent = ('0' + timeParts.hours).slice(-2);
+        if (minutesElement) minutesElement.textContent = ('0' + timeParts.minutes).slice(-2);
+        if (secondsElement) secondsElement.textContent = ('0' + timeParts.seconds).slice(-2);
     }
 }
 
@@ -57,7 +57,7 @@ flatpickr(dateTimePicker, {
         const currentDate = new Date();
 
         if (selectedDate <= currentDate) {
-            Notiflix.Notify.failure('2023-8-30');
+            Notiflix.Notify.failure('La fecha seleccionada debe ser en el futuro.');
         } else {
             fechaObjetivo = selectedDate;
             clearInterval(countdownInterval);
@@ -72,7 +72,7 @@ document.querySelector('[data-start]').addEventListener("click", function () {
 });
 
 
-Notiflix.Notify.init({position: "bottom-right" });
+Notiflix.Notify.init({ position: "bottom-right" });
 
 
 actualizarTemporizador();
