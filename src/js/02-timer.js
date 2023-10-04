@@ -57,7 +57,7 @@ flatpickr(dateTimePicker, {
         const currentDate = new Date();
 
         if (selectedDate <= currentDate) {
-            Notiflix.Notify.failure('La fecha seleccionada debe ser en el futuro.');
+            Notiflix.Notify.failure('');
         } else {
             fechaObjetivo = selectedDate;
             clearInterval(countdownInterval);
