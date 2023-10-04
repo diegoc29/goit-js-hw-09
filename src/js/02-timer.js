@@ -3,7 +3,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from "notiflix";
 
 
-const fechaObjetivo = new Date(2023, 8, 30, 12, 0, 0);
+const fechaObjetivo = new Date('2023, 8, 30, 12, 0, 0');
 
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
