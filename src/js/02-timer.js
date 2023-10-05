@@ -1,6 +1,6 @@
-import flatpickr  "flatpickr";
+import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-import Notiflix  "notiflix";
+import Notiflix from "notiflix";
 
 
 const fechaObjetivo = new Date('2023-08-30T12:00:00');
