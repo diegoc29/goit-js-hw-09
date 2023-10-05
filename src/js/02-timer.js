@@ -1,10 +1,9 @@
-import flatpickr from "flatpickr";
+import flatpickr  "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-import Notiflix from "notiflix";
+import Notiflix  "notiflix";
 
 
 const fechaObjetivo = new Date('2023-08-30T12:00:00');
-const startBtn = document.querySelector("[data-start]");
 
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
