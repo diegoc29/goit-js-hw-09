@@ -72,7 +72,7 @@ document.querySelector('[data-start]').addEventListener("click", function () {
 });
 
 
-Notiflix.Notify.init({});
+Notiflix.Notify.init({position: "bottom-right" });
 
 
 actualizarTemporizador();
