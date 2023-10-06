@@ -1,3 +1,5 @@
+import Notiflix from "notiflix";
+
 function createPromise(position, delay) {
   return new Promise ((resolve, reject) => {
     setTimeout(() => {
@@ -10,6 +12,14 @@ function createPromise(position, delay) {
     }, delay);
   });
 }
+
+
+function showSuccessNotification(position, delay) {
+  Notiflix.Notify.Success('✅ Fulfilled promise ${position} in ${delay}ms');
+}
+
+function showErrorNotification(position, delay) {
+  Notiflix.Notify.Failure('❌ Rejected promise ${position} in ${delay}ms');
 
 
 createPromise(2, 1500)
