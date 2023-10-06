@@ -31,7 +31,4 @@ createPromise(2, 1500)
   console.log('❌ Rejected promise ${position} in ${delay}ms');
 });
 
-if (selectedDate <= currentDate) {
-  Notiflix.Notify.failure('');
-} 
 Notiflix.Notify.init({useFontAwesome: true,});
