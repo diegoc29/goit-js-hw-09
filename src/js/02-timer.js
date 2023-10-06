@@ -33,10 +33,10 @@ function actualizarTemporizador() {
     const diferencia = fechaObjetivo - ahora;
 
     if (diferencia <= 0) {
-        if (daysElement) daysElement.textContent = '0';
-        if (hoursElement) hoursElement.textContent = '0';
-        if (minutesElement) minutesElement.textContent = '0';
-        if (secondsElement) secondsElement.textContent = '0';
+        if (daysElement) daysElement.textContent = '00';
+        if (hoursElement) hoursElement.textContent = '00';
+        if (minutesElement) minutesElement.textContent = '00';
+        if (secondsElement) secondsElement.textContent = '00';
         clearInterval(countdownInterval);
     } else {
         const timeParts = convertMs(diferencia);
