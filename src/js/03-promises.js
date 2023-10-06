@@ -21,6 +21,7 @@ function showSuccessNotification(position, delay) {
 function showErrorNotification(position, delay) {
   Notiflix.Notify.Failure('❌ Rejected promise ${position} in ${delay}ms');
 
+}
 
 createPromise(2, 1500)
 .then(({position, delay}) => {
