@@ -30,3 +30,7 @@ createPromise(2, 1500)
 .catch(({position, delay}) =>{
   console.log('❌ Rejected promise ${position} in ${delay}ms');
 });
+
+Notiflix.Init({
+  useFontAwesome: true,
+});
