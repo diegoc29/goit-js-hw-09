@@ -2,77 +2,94 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from "notiflix";
 
-
-let fechaObjetivo = new Date('2023-08-30T12:00:00');
-
-const daysElement = document.getElementById('days');
-const hoursElement = document.getElementById('hours');
-const minutesElement = document.getElementById('minutes');
-const secondsElement = document.getElementById('seconds');
-const dateTimePicker = document.getElementById("datetime-picker");
+// Elementos de la interfaz
+const datetimePicker = document.getElementById("datetime-picker");
+const startButton = document.querySelector('[data-start]');
+const daysElement = document.querySelector('[data-days]');
+const hoursElement = document.querySelector('[data-hours]');
+const minutesElement = document.querySelector('[data-minutes]');
+const secondsElement = document.querySelector('[data-seconds]');
 
 let countdownInterval;
 
+// Configuración de Flatpickr
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    const selectedDate = selectedDates[0];
+    const currentDate = new Date();
 
-function convertMs(ms) {
-    const seconds = Math.floor(ms / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    return {
-        days: days % 24,
-        hours: hours % 60,
-        minutes: minutes % 60,
-        seconds: seconds % 60,
-    };
-}
-
-
-function actualizarTemporizador() {
-    let ahora = new Date();
-    let diferencia = fechaObjetivo - ahora;
-
-    if (diferencia <= 0) {
-        if (daysElement) daysElement.textContent = '00';
-        if (hoursElement) hoursElement.textContent = '00';
-        if (minutesElement) minutesElement.textContent = '00';
-        if (secondsElement) secondsElement.textContent = '00';
-        clearInterval(countdownInterval);
+    if (selectedDate <= currentDate) {
+      Notiflix.Notify.failure('Please choose a date in the future');
+      startButton.disabled = true;
     } else {
-        const timeParts = convertMs(diferencia);
-        if (daysElement) daysElement.textContent = ('0' + timeParts.days).slice(-2);
-        if (hoursElement) hoursElement.textContent = ('0' + timeParts.hours).slice(-2);
-        if (minutesElement) minutesElement.textContent = ('0' + timeParts.minutes).slice(-2);
-        if (secondsElement) secondsElement.textContent = ('0' + timeParts.seconds).slice(-2);
+      startButton.disabled = false;
     }
+  },
+};
+
+flatpickr(datetimePicker, options);
+
+// Función para iniciar el temporizador
+startButton.addEventListener("click", function () {
+  clearInterval(countdownInterval);
+
+  const selectedDate = flatpickr.parseDate(datetimePicker.value, "Y-m-d H:i");
+  const now = new Date();
+  
+  if (selectedDate <= now) {
+    Notiflix.Notify.failure('Please choose a date in the future');
+  } else {
+    countdownInterval = setInterval(function () {
+      const now = new Date();
+      const difference = selectedDate - now;
+
+      if (difference <= 0) {
+        clearInterval(countdownInterval);
+        actualizarTemporizador(0, 0, 0, 0);
+      } else {
+        const timeParts = convertMs(difference);
+        actualizarTemporizador(
+          timeParts.days,
+          timeParts.hours,
+          timeParts.minutes,
+          timeParts.seconds
+        );
+      }
+    }, 1000);
+  }
+});
+
+// Función para convertir milisegundos en días, horas, minutos y segundos
+function convertMs(ms) {
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  const days = Math.floor(ms / day);
+  const hours = Math.floor((ms % day) / hour);
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+  return { days, hours, minutes, seconds };
 }
 
+// Función para actualizar la interfaz del temporizador
+function actualizarTemporizador(days, hours, minutes, seconds) {
+  daysElement.textContent = addLeadingZero(days);
+  hoursElement.textContent = addLeadingZero(hours);
+  minutesElement.textContent = addLeadingZero(minutes);
+  secondsElement.textContent = addLeadingZero(seconds);
+}
 
-flatpickr(dateTimePicker, {
-    enableTime: true,
-    time_24hr: true,
-    minuteIncrement: 1,
-    onClose: function (selectedDates) {
-        const selectedDate = selectedDates[0];
-        const currentDate = new Date();
+// Función para agregar un cero delante de un número si es menor que 10
+function addLeadingZero(value) {
+  return value < 10 ? `0${value}` : value;
+}
 
-        if (selectedDate <= currentDate) {
-            Notiflix.Notify.failure('');
-        } else {
-            fechaObjetivo = selectedDate;
-            clearInterval(countdownInterval);
-            countdownInterval = setInterval(actualizarTemporizador, 1000);
-        }
-    }
-});
-
-document.querySelector('[data-start]').addEventListener("click", function () {
-    clearInterval(countdownInterval);
-    countdownInterval = setInterval(actualizarTemporizador, 1000);
-});
-
-
-Notiflix.Notify.init({position: "bottom-right" });
-
-
-actualizarTemporizador();
+// Inicialización de Notiflix para notificaciones
+Notiflix.Notify.init({ position: "bottom-right" });
