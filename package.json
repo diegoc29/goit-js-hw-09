@@ -2,12 +2,11 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://diegoc29.github.io/goit-js-hw-09/", 
+  "homepage": "https://diegoc29.github.io/goit-js-hw-09/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-09/" 
+    "build": "parcel build src/*.html --public-url /goit-js-hw-09/"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/goitacademy/parcel-project-template.git"
