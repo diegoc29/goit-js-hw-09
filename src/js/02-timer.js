@@ -3,7 +3,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from "notiflix";
 
 
-let fechaObjetivo = new Date('2023-08-30');
+let fechaObjetivo = new Date('2023-08-30T12:00:00');
 
 const daysElement = document.getElementById('days');
 const hoursElement = document.getElementById('hours');
@@ -29,8 +29,8 @@ function convertMs(ms) {
 
 
 function actualizarTemporizador() {
-    const ahora = new Date();
-    const diferencia = fechaObjetivo - ahora;
+    let ahora = new Date();
+    let diferencia = fechaObjetivo - ahora;
 
     if (diferencia <= 0) {
         if (daysElement) daysElement.textContent = '00';
