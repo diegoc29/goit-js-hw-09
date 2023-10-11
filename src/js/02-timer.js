@@ -2,7 +2,6 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from "notiflix";
 
-// Elementos de la interfaz
 const datetimePicker = document.getElementById("datetime-picker");
 const startButton = document.querySelector('[data-start]');
 const daysElement = document.querySelector('[data-days]');
@@ -12,7 +11,7 @@ const secondsElement = document.querySelector('[data-seconds]');
 
 let countdownInterval;
 
-// Configuración de Flatpickr
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -33,7 +32,7 @@ const options = {
 
 flatpickr(datetimePicker, options);
 
-// Función para iniciar el temporizador
+
 startButton.addEventListener("click", function () {
   clearInterval(countdownInterval);
 
@@ -63,7 +62,7 @@ startButton.addEventListener("click", function () {
   }
 });
 
-// Función para convertir milisegundos en días, horas, minutos y segundos
+
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -78,7 +77,7 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// Función para actualizar la interfaz del temporizador
+
 function actualizarTemporizador(days, hours, minutes, seconds) {
   daysElement.textContent = addLeadingZero(days);
   hoursElement.textContent = addLeadingZero(hours);
@@ -86,10 +85,10 @@ function actualizarTemporizador(days, hours, minutes, seconds) {
   secondsElement.textContent = addLeadingZero(seconds);
 }
 
-// Función para agregar un cero delante de un número si es menor que 10
+
 function addLeadingZero(value) {
   return value < 10 ? `0${value}` : value;
 }
 
-// Inicialización de Notiflix para notificaciones
+
 Notiflix.Notify.init({ position: "bottom-right" });
